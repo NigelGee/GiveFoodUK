@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectFoodbankView: View {
-    @AppStorage("postcode") var postcode = "SW1 1AA"
+    @AppStorage("postcode") var postcode = ""
     @AppStorage("isList") var isList = true
 
     @Environment(DataController.self) private var dataController
@@ -34,6 +34,7 @@ struct SelectFoodbankView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
+                    dataController.select(nil)
                     postcode = ""
                     router.path.removeLast()
                 } label: {

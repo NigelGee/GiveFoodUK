@@ -38,6 +38,13 @@ struct DetailFoodbankView: View {
                 }
             }
 
+            if let url = URL(string: foodbank.URLS.homepage) {
+                VStack(alignment: .leading) {
+                    Text("Website:")
+                    Link(foodbank.URLS.homepage, destination: url)
+                }
+            }
+
             if let url = URL(string: "mailto:\(foodbank.email)") {
                 VStack(alignment: .leading) {
                     Text("Email:")

@@ -56,9 +56,9 @@ struct Foodbank: Codable, Identifiable, Hashable {
     var formattedPhone: String {
         if phone.contains("x") {
             var newPhone = ""
-            for t in phone {
-                if t == "x" { break }
-                newPhone.append(t)
+            for tel in phone {
+                if tel == "x" { break }
+                newPhone.append(tel)
             }
             return newPhone
         }
@@ -74,8 +74,21 @@ extension Foodbank {
         var id: String
         var needs: String
         var excess: String?
+        var created: String?
 
-        static let example = Items(id: "7e4e53b3", needs: "UHT Milk\nLong-Life Fruit Juice\nCooking Oil\nDrinking Chocolate\nJam\nMashed Potatoes", excess: "Example Excess Items")
+        var formattedDate: String {
+            if let created {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSS"
+
+                if let date = formatter.date(from: created) {
+                    return date.formatted(date: .abbreviated, time: .shortened)
+                }
+            }
+            return "unknown date"
+        }
+
+        static let example = Items(id: "7e4e53b3", needs: "UHT Milk\nLong-Life Fruit Juice\nCooking Oil\nDrinking Chocolate\nJam\nMashed Potatoes", excess: "Example Excess Items", created: "2023-07-13T14:44:38.860")
     }
 
     struct Charity: Codable, Hashable {
@@ -117,11 +130,13 @@ extension Foodbank {
 
     struct URLS: Codable, Hashable {
         private enum CodingKeys: String, CodingKey {
-            case shoppingList = "shopping_list"
+            case shoppingList = "shopping_list", homepage
         }
-        var shoppingList: String?
 
-        static let example = URLS(shoppingList: "https://bath.foodbank.org.uk/give-help/donate-food/")
+        var shoppingList: String?
+        var homepage: String
+
+        static let example = URLS(shoppingList: "https://bath.foodbank.org.uk/give-help/donate-food/", homepage: "https://bath.foodbank.org.uk")
     }
 }
 

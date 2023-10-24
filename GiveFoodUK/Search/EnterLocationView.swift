@@ -41,12 +41,14 @@ struct EnterLocationView: View {
                         .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.characters)
                         .textContentType(.postalCode)
-                        .padding()
                         .submitLabel(.go)
                         .onSubmit { router.path.append(postcode) }
 
-                    Button("Go") {
+                    Button {
                         router.path.append(postcode)
+                    } label: {
+                        Text("Go")
+                            .padding(.horizontal)
                     }
                     .buttonStyle(.borderedColor(with: .blue))
                     .disabled(postcode == "")

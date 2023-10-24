@@ -31,9 +31,17 @@ struct SelectedFoodbankView: View {
                     }
                 }
 
-                Section("Requested Items") {
+                Section {
                     ForEach(foodbank.neededItems) { item in
                         Text(item.needs)
+                    }
+                } header: {
+                    Text("Requested Items")
+                } footer: {
+                    if let items = foodbank.alternateItems {
+                        Text("Created on \(items.formattedDate)")
+                    } else {
+                        Text("baaa")
                     }
                 }
             }
