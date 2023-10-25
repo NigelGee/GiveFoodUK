@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 struct SelectFoodbankView: View {
     @AppStorage("postcode") var postcode = ""
@@ -16,14 +17,19 @@ struct SelectFoodbankView: View {
 
     @State private var state = LoadState.loading
 
+    let changeViewTip = ChangeViewTip()
+
     var body: some View {
         Group {
             switch state {
             case .loading:
                 ProgressView("Loading…")
             case .failed:
+
                 FailedView(action: fetchFoodbanks)
             case .loaded(let foodbanks):
+                TipView(changeViewTip)
+                    .tipBackground(.blue.opacity(0.2))
                 LoadedFoodbankView(foodbanks: foodbanks)
             }
         }
@@ -46,11 +52,17 @@ struct SelectFoodbankView: View {
                 Button {
                     withAnimation {
                         isList.toggle()
+                        changeViewTip.invalidate(reason: .actionPerformed)
                     }
                 } label: {
                     Label("Change View", systemImage: isList ? "map" : "list.bullet")
                 }
+                // Not showing pop over tip!
+                .popoverTip(changeViewTip, arrowEdge: .top)
             }
+        }
+        .task {
+            await ChangeViewTip.changeViewEvent.donate()
         }
     }
 
@@ -66,9 +78,11 @@ struct SelectFoodbankView: View {
 }
 
 #Preview {
-    NavigationStack {
-        SelectFoodbankView()
-            .environment(DataController())
-            .environmentObject(Router())
+    TabView {
+        NavigationStack {
+            SelectFoodbankView()
+                .environment(DataController())
+                .environmentObject(Router())
+        }
     }
 }

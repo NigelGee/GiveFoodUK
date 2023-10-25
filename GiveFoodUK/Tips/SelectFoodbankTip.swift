@@ -5,7 +5,6 @@
 //  Created by Nigel Gee on 23/10/2023.
 //
 
-import Foundation
 import TipKit
 
 struct SelectFoodbankTip: Tip {

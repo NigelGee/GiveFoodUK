@@ -16,15 +16,21 @@ struct FailedView: View {
             Label("Load failed", systemImage: "exclamationmark.triangle")
                 .symbolRenderingMode(.multicolor)
         } description: {
-            Text("Check internet connection; please try again.\nCheck and change location.")
+            Text("""
+            Check internet connection; please try again.
+            Check location details and retry.
+            """)
         } actions: {
-            Button("Retry", systemImage: "arrow.circlepath", action: action)
-                .buttonStyle(.borderedColor(with: .red))
+            VStack(spacing: 0) {
+                Button("Retry", systemImage: "arrow.circlepath", action: action)
+                    .buttonStyle(.borderedColor(with: .red))
 
-            Button("Location", systemImage: "location") {
-                router.path.removeLast()
+                Button("Location", systemImage: "location") {
+                    router.path.removeLast()
+                }
+                .buttonStyle(.borderedColor(with: .blue))
+
             }
-            .buttonStyle(.borderedColor(with: .blue))
         }
     }
 }
