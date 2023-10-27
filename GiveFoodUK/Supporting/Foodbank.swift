@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Foodbank: Codable, Identifiable, Hashable {
     private enum CodingKeys: String, CodingKey {
-        case name, slug, phone, email, address, distance = "distance_m", location = "lat_lng" ,items = "needs", charity, locations, politics, URLS = "urls", alternateItems = "need"
+        case name, slug, phone, email, address, /*distance = "distance_m",*/ location = "lat_lng" ,items = "need", charity, locations, politics, URLS = "urls"
     }
 
     var id: String { slug }
@@ -19,29 +19,15 @@ struct Foodbank: Codable, Identifiable, Hashable {
     var phone: String
     var email: String
     var address: String
-    var distance: Int?
     var location: String
     var politics: Politics
     var URLS: URLS
-    var items: Items?
+    var items: Items
     var charity: Charity
-    var alternateItems: Items?
     var locations: [Location]?
 
-
-    var distanceFormatted: String {
-        guard let distance else { return "Unknown"}
-        let measurement = Measurement(value: Double(distance), unit: UnitLength.meters)
-
-        return measurement.formatted(.measurement(width: .abbreviated))
-    }
-
-    var actualItems: Items {
-        items ?? alternateItems ?? Items(id: "None", needs: "None")
-    }
-
     var neededItems: [Items] {
-        let baseList = actualItems.needs.components(separatedBy: .newlines)
+        let baseList = items.needs.components(separatedBy: .newlines)
 
         return baseList.map { Items(id: UUID().uuidString, needs: $0) }
     }
@@ -65,7 +51,7 @@ struct Foodbank: Codable, Identifiable, Hashable {
         return phone
     }
 
-    static let example = Foodbank(name: "Westminster", slug: "westminster", phone: "02078341731x224", email: "foodbank@westminsterchapel.org.uk", address: "Westminster Chapel\r\nBuckingham Gate\r\nLondon\r\nSW1E 6BS", distance: 337, location: "51.49888499999999,-0.138101", politics: .example, URLS: .example, items: .example, charity: .example)
+    static let example = Foodbank(name: "Westminster", slug: "westminster", phone: "02078341731x224", email: "foodbank@westminsterchapel.org.uk", address: "Westminster Chapel\r\nBuckingham Gate\r\nLondon\r\nSW1E 6BS", location: "51.49888499999999,-0.138101", politics: .example, URLS: .example, items: .example, charity: .example)
 
 }
 

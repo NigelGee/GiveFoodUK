@@ -38,11 +38,7 @@ struct SelectedFoodbankView: View {
                 } header: {
                     Text("Requested Items")
                 } footer: {
-                    if let items = foodbank.alternateItems {
-                        Text("Created on \(items.formattedDate)")
-                    } else {
-                        Text("baaa")
-                    }
+                    Text("Created on \(foodbank.items.formattedDate)")
                 }
             }
             .navigationTitle("\(foodbank.name)'s Foodbank")

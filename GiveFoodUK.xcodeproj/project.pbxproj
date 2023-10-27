@@ -26,6 +26,10 @@
 		8B2657B92AE7BD780015A3C7 /* SelectedFoodbankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2657B52AE7BD780015A3C7 /* SelectedFoodbankView.swift */; };
 		8B2657BA2AE7BD780015A3C7 /* SavedFoodbankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2657B62AE7BD780015A3C7 /* SavedFoodbankView.swift */; };
 		8B2657BB2AE7BD780015A3C7 /* DetailFoodbankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2657B72AE7BD780015A3C7 /* DetailFoodbankView.swift */; };
+		8B4B25542AEACFF100C73CFB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B25532AEACFF100C73CFB /* LocationManager.swift */; };
+		8B4B25572AEAE44B00C73CFB /* URLSession-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B25562AEAE44B00C73CFB /* URLSession-Decodable.swift */; };
+		8B4B25592AEBE4C900C73CFB /* FoodbankLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B25582AEBE4C900C73CFB /* FoodbankLocation.swift */; };
+		8B4B255B2AEC1BC200C73CFB /* SearchType-enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B255A2AEC1BC200C73CFB /* SearchType-enum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +53,11 @@
 		8B2657B52AE7BD780015A3C7 /* SelectedFoodbankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedFoodbankView.swift; sourceTree = "<group>"; };
 		8B2657B62AE7BD780015A3C7 /* SavedFoodbankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedFoodbankView.swift; sourceTree = "<group>"; };
 		8B2657B72AE7BD780015A3C7 /* DetailFoodbankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFoodbankView.swift; sourceTree = "<group>"; };
+		8B4B25532AEACFF100C73CFB /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		8B4B25552AEAD1E400C73CFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8B4B25562AEAE44B00C73CFB /* URLSession-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession-Decodable.swift"; sourceTree = "<group>"; };
+		8B4B25582AEBE4C900C73CFB /* FoodbankLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodbankLocation.swift; sourceTree = "<group>"; };
+		8B4B255A2AEC1BC200C73CFB /* SearchType-enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchType-enum.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +90,7 @@
 		8B26578B2AE7BBF40015A3C7 /* GiveFoodUK */ = {
 			isa = PBXGroup;
 			children = (
+				8B4B25552AEAD1E400C73CFB /* Info.plist */,
 				8B26578C2AE7BBF40015A3C7 /* GiveFoodUKApp.swift */,
 				8B26578E2AE7BBF40015A3C7 /* ContentView.swift */,
 				8B2657B32AE7BD2F0015A3C7 /* Search */,
@@ -104,11 +114,15 @@
 		8B2657AA2AE7BCAA0015A3C7 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				8B26579E2AE7BC800015A3C7 /* ButtonModifiler.swift */,
 				8B26579D2AE7BC800015A3C7 /* DataController.swift */,
+				8B4B25582AEBE4C900C73CFB /* FoodbankLocation.swift */,
 				8B26579B2AE7BC800015A3C7 /* Foodbank.swift */,
 				8B26579C2AE7BC800015A3C7 /* Location.swift */,
 				8B26579F2AE7BC800015A3C7 /* Router.swift */,
+				8B4B25532AEACFF100C73CFB /* LocationManager.swift */,
+				8B26579E2AE7BC800015A3C7 /* ButtonModifiler.swift */,
+				8B4B25562AEAE44B00C73CFB /* URLSession-Decodable.swift */,
+				8B4B255A2AEC1BC200C73CFB /* SearchType-enum.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -215,13 +229,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B2657A72AE7BC800015A3C7 /* Router.swift in Sources */,
+				8B4B25572AEAE44B00C73CFB /* URLSession-Decodable.swift in Sources */,
 				8B2657B92AE7BD780015A3C7 /* SelectedFoodbankView.swift in Sources */,
+				8B4B255B2AEC1BC200C73CFB /* SearchType-enum.swift in Sources */,
 				8B2657A92AE7BC800015A3C7 /* SelectFoodbankTip.swift in Sources */,
 				8B26578F2AE7BBF40015A3C7 /* ContentView.swift in Sources */,
 				8B2657BA2AE7BD780015A3C7 /* SavedFoodbankView.swift in Sources */,
 				8B2657A52AE7BC800015A3C7 /* DataController.swift in Sources */,
 				8B2657AF2AE7BD200015A3C7 /* EnterLocationView.swift in Sources */,
 				8B2657A32AE7BC800015A3C7 /* Foodbank.swift in Sources */,
+				8B4B25542AEACFF100C73CFB /* LocationManager.swift in Sources */,
 				8B2657A42AE7BC800015A3C7 /* Location.swift in Sources */,
 				8B2657BB2AE7BD780015A3C7 /* DetailFoodbankView.swift in Sources */,
 				8B2657B12AE7BD200015A3C7 /* FailedView.swift in Sources */,
@@ -230,6 +247,7 @@
 				8B2657A62AE7BC800015A3C7 /* ButtonModifiler.swift in Sources */,
 				8B2657B02AE7BD200015A3C7 /* LoadedFoodbankView.swift in Sources */,
 				8B2657B22AE7BD200015A3C7 /* SelectFoodbankView.swift in Sources */,
+				8B4B25592AEBE4C900C73CFB /* FoodbankLocation.swift in Sources */,
 				8B2657A82AE7BC800015A3C7 /* ChangeViewTip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,8 +385,10 @@
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GiveFoodUK/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GiveFoodUK;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need to access your location to find near by Foodbanks";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -398,8 +418,10 @@
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GiveFoodUK/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GiveFoodUK;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need to access your location to find near by Foodbanks";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

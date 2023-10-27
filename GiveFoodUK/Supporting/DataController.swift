@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum LoadState {
-    case loading, failed, loaded([Foodbank])
+    case loading, failed, loaded([FoodbankLocation])
 }
 
 @Observable
@@ -36,17 +36,19 @@ class DataController {
         }
     }
 
-    func loadFoodbanks(near postCode: String) async -> LoadState {
-        let fullURL = "https://www.givefood.org.uk/api/2/foodbanks/search/?address=\(postCode)"
-        
+    func loadFoodbanks(_ searchType: SearchType, for criteria: String) async -> LoadState {
+        let fullURL = searchType.rawValue + criteria
+        print(fullURL)
+
         guard let url = URL(string: fullURL) else { return .failed }
 
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
+            let foodbanks = try await URLSession.shared.decode([FoodbankLocation].self, from: url)
 
-            let foodbanks = try decoder.decode([Foodbank].self, from: data)
+            if searchType == .currentLocation {
+                return .loaded(foodbanks.filter { $0.type == "organisation" })
+            }
+
             return .loaded(foodbanks)
         } catch {
             return .failed

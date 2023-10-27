@@ -5,13 +5,16 @@
 //  Created by Nigel Gee on 17/10/2023.
 //
 
+import CoreLocationUI
 import SwiftUI
 
 struct EnterLocationView: View {
     @Environment(DataController.self) private var dataController
     @EnvironmentObject var router: Router
 
-    @AppStorage("postcode") var postcode = ""
+    @State private var locationManager = LocationManager()
+    @State private var criteria = ""
+    @State private var searchType: SearchType = .currentLocation
 
     static var tag = "search"
 
@@ -33,27 +36,35 @@ struct EnterLocationView: View {
                 Text("Welcome")
                     .font(.largeTitle)
 
-                Text("To get started, please tell us your postcode.")
+                Text("To get started, please tell us your postcode, or ")
                     .padding([.horizontal, .bottom])
 
                 HStack {
-                    TextField("Enter post code or town", text: $postcode)
+                    TextField("Enter post code or town", text: $criteria)
                         .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.characters)
                         .textContentType(.postalCode)
                         .submitLabel(.go)
-                        .onSubmit { router.path.append(postcode) }
+                        .onSubmit { router.path.append(criteria) }
 
                     Button {
-                        router.path.append(postcode)
+                        searchType = .postcode
+                        router.path.append(criteria)
                     } label: {
                         Text("Go")
                             .padding(.horizontal)
                     }
-                    .buttonStyle(.borderedColor(with: .blue))
-                    .disabled(postcode == "")
+                    .buttonStyle(.borderedColor(with: criteria == "" ? .cyan : .blue))
+                    .disabled(criteria == "")
                 }
                 .padding()
+
+                LocationButton {
+                    getLocation()
+                }
+                .frame(minHeight: 44)
+                .foregroundStyle(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
 
                 Group {
                     Text("**Give Food** is a UK charity that uses data to highlight local and structural food insecurity then provides tools to help alleviate it.")
@@ -70,13 +81,17 @@ struct EnterLocationView: View {
             }
             .navigationTitle("Search")
             .navigationDestination(for: String.self) { _ in
-                SelectFoodbankView()
+                SelectFoodbankView(searchType: searchType)
             }
-            .task {
-                if postcode != "" {
-                    router.path.append(postcode)
-                }
-            }
+        }
+    }
+
+    func getLocation() {
+        locationManager.requestLocation()
+        if let location = locationManager.location {
+            searchType = .currentLocation
+            criteria = "\(location.latitude),\(location.longitude)"
+            router.path.append(criteria)
         }
     }
 }

@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum SearchType: String {
+    case postcode = "https://www.givefood.org.uk/api/2/foodbanks/search/?address="
+    case currentLocation = "https://www.givefood.org.uk/api/2/locations/search/?lat_lng="
+}

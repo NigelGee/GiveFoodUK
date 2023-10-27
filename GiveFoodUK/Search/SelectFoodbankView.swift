@@ -9,13 +9,17 @@ import SwiftUI
 import TipKit
 
 struct SelectFoodbankView: View {
-    @AppStorage("postcode") var postcode = ""
+    @AppStorage("criteria") var criteria = ""
+    @AppStorage("url") var url = "https://www.givefood.org.uk/api/2/foodbanks/search/?address="
+    
     @AppStorage("isList") var isList = true
 
     @Environment(DataController.self) private var dataController
     @EnvironmentObject var router: Router
 
     @State private var state = LoadState.loading
+
+    let searchType: SearchType
 
     let changeViewTip = ChangeViewTip()
 
@@ -25,7 +29,6 @@ struct SelectFoodbankView: View {
             case .loading:
                 ProgressView("Loading…")
             case .failed:
-
                 FailedView(action: fetchFoodbanks)
             case .loaded(let foodbanks):
                 TipView(changeViewTip)
@@ -33,15 +36,18 @@ struct SelectFoodbankView: View {
                 LoadedFoodbankView(foodbanks: foodbanks)
             }
         }
-        .navigationTitle("Nearby for \(postcode)")
+        .navigationTitle("Nearby \(searchType == .postcode ? "for \(criteria)" : "your Location")")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
-        .task { fetchFoodbanks() }
+        .task {
+            fetchFoodbanks()
+            await ChangeViewTip.changeViewEvent.donate()
+        }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     dataController.select(nil)
-                    postcode = ""
+                    criteria = ""
                     router.path.removeLast()
                 } label: {
                     Label("Change Location", systemImage: "location")
@@ -61,9 +67,6 @@ struct SelectFoodbankView: View {
                 .popoverTip(changeViewTip, arrowEdge: .top)
             }
         }
-        .task {
-            await ChangeViewTip.changeViewEvent.donate()
-        }
     }
 
     func fetchFoodbanks() {
@@ -72,7 +75,7 @@ struct SelectFoodbankView: View {
         Task {
             try await Task.sleep(for: .seconds(0.5))
 
-            state = await dataController.loadFoodbanks(near: postcode)
+            state = await dataController.loadFoodbanks(searchType, for: criteria)
         }
     }
 }
@@ -80,7 +83,7 @@ struct SelectFoodbankView: View {
 #Preview {
     TabView {
         NavigationStack {
-            SelectFoodbankView()
+            SelectFoodbankView(searchType: .postcode)
                 .environment(DataController())
                 .environmentObject(Router())
         }

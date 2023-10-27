@@ -13,7 +13,7 @@ struct LoadedFoodbankView: View {
     @AppStorage("selectedView") var selectedView: String?
     @AppStorage("isList") var isList = true
     @Environment(DataController.self) private var dataController
-    let foodbanks: [Foodbank]
+    let foodbanks: [FoodbankLocation]
 
     let selectFoodbankTip = SelectFoodbankTip()
 
@@ -27,7 +27,7 @@ struct LoadedFoodbankView: View {
                     ForEach(foodbanks) { foodbank in
                         Section {
                             Button {
-                                selected(foodbank)
+//                                selected(foodbank)
                                 selectFoodbankTip.invalidate(reason: .actionPerformed)
                             } label: {
                                 VStack(alignment: .leading) {
@@ -53,7 +53,7 @@ struct LoadedFoodbankView: View {
                         if let coordinate = foodbank.coordinate {
                             Annotation(foodbank.name, coordinate: coordinate) {
                                 Button {
-                                    selected(foodbank)
+//                                    selected(foodbank)
                                 } label: {
                                     Image(systemName: "house")
                                 }
