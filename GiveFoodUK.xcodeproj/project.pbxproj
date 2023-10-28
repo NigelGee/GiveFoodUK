@@ -30,6 +30,8 @@
 		8B4B25572AEAE44B00C73CFB /* URLSession-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B25562AEAE44B00C73CFB /* URLSession-Decodable.swift */; };
 		8B4B25592AEBE4C900C73CFB /* FoodbankLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B25582AEBE4C900C73CFB /* FoodbankLocation.swift */; };
 		8B4B255B2AEC1BC200C73CFB /* SearchType-enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B255A2AEC1BC200C73CFB /* SearchType-enum.swift */; };
+		8B4B255D2AED3F3A00C73CFB /* NoFoodBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B255C2AED3F3A00C73CFB /* NoFoodBankView.swift */; };
+		8B4B255F2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B255E2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		8B4B25562AEAE44B00C73CFB /* URLSession-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession-Decodable.swift"; sourceTree = "<group>"; };
 		8B4B25582AEBE4C900C73CFB /* FoodbankLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodbankLocation.swift; sourceTree = "<group>"; };
 		8B4B255A2AEC1BC200C73CFB /* SearchType-enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchType-enum.swift"; sourceTree = "<group>"; };
+		8B4B255C2AED3F3A00C73CFB /* NoFoodBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFoodBankView.swift; sourceTree = "<group>"; };
+		8B4B255E2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection-IsNotEmpty.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 				8B26579E2AE7BC800015A3C7 /* ButtonModifiler.swift */,
 				8B4B25562AEAE44B00C73CFB /* URLSession-Decodable.swift */,
 				8B4B255A2AEC1BC200C73CFB /* SearchType-enum.swift */,
+				8B4B255E2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 				8B2657B52AE7BD780015A3C7 /* SelectedFoodbankView.swift */,
 				8B2657B72AE7BD780015A3C7 /* DetailFoodbankView.swift */,
 				8B2657B42AE7BD780015A3C7 /* DropOffView.swift */,
+				8B4B255C2AED3F3A00C73CFB /* NoFoodBankView.swift */,
 			);
 			path = Saved;
 			sourceTree = "<group>";
@@ -238,6 +244,7 @@
 				8B2657A52AE7BC800015A3C7 /* DataController.swift in Sources */,
 				8B2657AF2AE7BD200015A3C7 /* EnterLocationView.swift in Sources */,
 				8B2657A32AE7BC800015A3C7 /* Foodbank.swift in Sources */,
+				8B4B255F2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift in Sources */,
 				8B4B25542AEACFF100C73CFB /* LocationManager.swift in Sources */,
 				8B2657A42AE7BC800015A3C7 /* Location.swift in Sources */,
 				8B2657BB2AE7BD780015A3C7 /* DetailFoodbankView.swift in Sources */,
@@ -245,6 +252,7 @@
 				8B26578D2AE7BBF40015A3C7 /* GiveFoodUKApp.swift in Sources */,
 				8B2657B82AE7BD780015A3C7 /* DropOffView.swift in Sources */,
 				8B2657A62AE7BC800015A3C7 /* ButtonModifiler.swift in Sources */,
+				8B4B255D2AED3F3A00C73CFB /* NoFoodBankView.swift in Sources */,
 				8B2657B02AE7BD200015A3C7 /* LoadedFoodbankView.swift in Sources */,
 				8B2657B22AE7BD200015A3C7 /* SelectFoodbankView.swift in Sources */,
 				8B4B25592AEBE4C900C73CFB /* FoodbankLocation.swift in Sources */,

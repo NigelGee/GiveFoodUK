@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Foodbank: Codable, Identifiable, Hashable {
     private enum CodingKeys: String, CodingKey {
-        case name, slug, phone, email, address, /*distance = "distance_m",*/ location = "lat_lng" ,items = "need", charity, locations, politics, URLS = "urls"
+        case name, slug, phone, email, address, location = "lat_lng", URLS = "urls", charity, locations, politics, items = "need", nearbyFoodbanks = "nearby_foodbanks"
     }
 
     var id: String { slug }
@@ -20,11 +20,13 @@ struct Foodbank: Codable, Identifiable, Hashable {
     var email: String
     var address: String
     var location: String
-    var politics: Politics
+
     var URLS: URLS
-    var items: Items
     var charity: Charity
     var locations: [Location]?
+    var politics: Politics
+    var items: Items
+    var nearbyFoodbanks: [NearbyFoodbank]
 
     var neededItems: [Items] {
         let baseList = items.needs.components(separatedBy: .newlines)
@@ -51,7 +53,7 @@ struct Foodbank: Codable, Identifiable, Hashable {
         return phone
     }
 
-    static let example = Foodbank(name: "Westminster", slug: "westminster", phone: "02078341731x224", email: "foodbank@westminsterchapel.org.uk", address: "Westminster Chapel\r\nBuckingham Gate\r\nLondon\r\nSW1E 6BS", location: "51.49888499999999,-0.138101", politics: .example, URLS: .example, items: .example, charity: .example)
+    static let example = Foodbank(name: "Westminster", slug: "westminster", phone: "02078341731x224", email: "foodbank@westminsterchapel.org.uk", address: "Westminster Chapel\r\nBuckingham Gate\r\nLondon\r\nSW1E 6BS", location: "51.49888499999999,-0.138101", URLS: .example, charity: .example, locations: [], politics: .example, items: .example, nearbyFoodbanks: [.example])
 
 }
 
@@ -123,6 +125,27 @@ extension Foodbank {
         var homepage: String
 
         static let example = URLS(shoppingList: "https://bath.foodbank.org.uk/give-help/donate-food/", homepage: "https://bath.foodbank.org.uk")
+    }
+
+    struct NearbyFoodbank: Codable, Hashable, Identifiable {
+        private enum CodingKeys: String, CodingKey {
+            case name, slug, address, location = "lat_lng"
+        }
+        
+        var id: String { name }
+        var name: String
+        var slug: String
+        var address: String
+        var location: String
+
+        var coordinate: CLLocationCoordinate2D? {
+            let components = location.split(separator: ",").compactMap(Double.init)
+            guard components.count == 2 else { return nil }
+
+            return CLLocationCoordinate2D(latitude: components[0], longitude: components[1])
+        }
+
+        static let example = NearbyFoodbank(name: "Bradford on Avon", slug: "bradford-on-avon", address: "The Hub @ BA15\r\nChurch Street\r\nBradford on Avon\r\nBA15 1LS", location: "51.3478187,-2.2514713")
     }
 }
 

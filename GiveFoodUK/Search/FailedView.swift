@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FailedView: View {
-    @AppStorage("criteria") var criteria = ""
+    @SceneStorage("criteria") var criteria = ""
     @EnvironmentObject var router: Router
     var action: () -> Void
 

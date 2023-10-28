@@ -36,7 +36,7 @@ struct EnterLocationView: View {
                 Text("Welcome")
                     .font(.largeTitle)
 
-                Text("To get started, please tell us your postcode, or ")
+                Text("To get started, please tell us your postcode.")
                     .padding([.horizontal, .bottom])
 
                 HStack {
@@ -54,7 +54,7 @@ struct EnterLocationView: View {
                         Text("Go")
                             .padding(.horizontal)
                     }
-                    .buttonStyle(.borderedColor(with: criteria == "" ? .cyan : .blue))
+                    .buttonStyle(.borderedColor(with: criteria == "" ? .cyan : .indigo))
                     .disabled(criteria == "")
                 }
                 .padding()
@@ -76,12 +76,13 @@ struct EnterLocationView: View {
 
                 Spacer()
 
-                Text("**Privacy:** Postcode is used by developer or *Give Food* other then to search nearby foodbanks")
+                Text("**Privacy:** Postcode or your location is not used by developer or *Give Food* other then to search nearby food banks")
                     .font(.caption)
+                    .padding(.horizontal)
             }
             .navigationTitle("Search")
             .navigationDestination(for: String.self) { _ in
-                SelectFoodbankView(searchType: searchType)
+                SelectFoodbankView(searchType: searchType, criteria: $criteria)
             }
         }
     }

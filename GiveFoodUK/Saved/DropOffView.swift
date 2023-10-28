@@ -19,7 +19,7 @@ struct DropOffView: View {
             Group {
                 if isList {
                     List {
-                        Section {
+                        Section("Foodbank") {
                             VStack(alignment: .leading) {
                                 HStack {
                                     Text(foodbank.name)
@@ -27,6 +27,7 @@ struct DropOffView: View {
                                     Spacer()
                                     Image(systemName: "house")
                                         .font(.title3)
+                                        .foregroundStyle(.red)
                                 }
 
                                 Text(foodbank.address)
@@ -34,27 +35,51 @@ struct DropOffView: View {
                         }
 
                         if let locations = foodbank.locations {
-                            ForEach(locations) { location in
-                                Section {
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Text(location.name)
-                                                .font(.title)
-                                            Spacer()
-                                            Image(systemName: "basket")
-                                                .font(.title3)
-                                        }
+                            if locations.isNotEmpty {
+                                Section("Points") {
+                                    ForEach(locations) { location in
+                                        VStack(alignment: .leading) {
+                                            HStack {
+                                                Text(location.name)
+                                                    .font(.title)
+                                                Spacer()
+                                                Image(systemName: "basket")
+                                                    .font(.title3)
+                                                    .foregroundStyle(.blue)
+                                            }
 
-                                        Text(location.address)
+                                            Text(location.address)
+                                        }
                                     }
                                 }
                             }
                         }
+
+                        Section("Nearby FoodBanks") {
+                            ForEach(foodbank.nearbyFoodbanks) { nearbyFoodbank in
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Text(nearbyFoodbank.name)
+                                            .font(.title)
+                                        Spacer()
+                                        Image(systemName: "house")
+                                            .font(.title3)
+                                            .foregroundStyle(Color.cyan)
+                                    }
+
+                                    Text(nearbyFoodbank.address)
+                                }
+                            }
+                        }
+
                     }
                 } else {
                     Map {
-                        if let coordinate = foodbank.coordinate {
-                            Marker("\(foodbank.name) Foodbank", systemImage: "house", coordinate: coordinate)
+                        ForEach(foodbank.nearbyFoodbanks) { nearbyFoodbank in
+                            if let coordinate = nearbyFoodbank.coordinate {
+                                Marker(nearbyFoodbank.name, systemImage: "house", coordinate: coordinate)
+                                    .tint(.cyan)
+                            }
                         }
 
                         if let locations = foodbank.locations {
@@ -64,6 +89,10 @@ struct DropOffView: View {
                                         .tint(.blue)
                                 }
                             }
+                        }
+
+                        if let coordinate = foodbank.coordinate {
+                            Marker("\(foodbank.name) Foodbank", systemImage: "house", coordinate: coordinate)
                         }
                     }
                 }

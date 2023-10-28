@@ -11,6 +11,7 @@ import TipKit
 
 struct LoadedFoodbankView: View {
     @AppStorage("selectedView") var selectedView: String?
+    @AppStorage("foodbankID") var foodbankID = ""
     @AppStorage("isList") var isList = true
     @Environment(DataController.self) private var dataController
     let foodbanks: [FoodbankLocation]
@@ -27,8 +28,9 @@ struct LoadedFoodbankView: View {
                     ForEach(foodbanks) { foodbank in
                         Section {
                             Button {
-//                                selected(foodbank)
                                 selectFoodbankTip.invalidate(reason: .actionPerformed)
+                                foodbankID = foodbank.id
+                                selectedView = SavedFoodbankView.tag
                             } label: {
                                 VStack(alignment: .leading) {
                                     HStack {
@@ -53,7 +55,8 @@ struct LoadedFoodbankView: View {
                         if let coordinate = foodbank.coordinate {
                             Annotation(foodbank.name, coordinate: coordinate) {
                                 Button {
-//                                    selected(foodbank)
+                                    foodbankID = foodbank.id
+                                    selectedView = SavedFoodbankView.tag
                                 } label: {
                                     Image(systemName: "house")
                                 }
@@ -68,20 +71,6 @@ struct LoadedFoodbankView: View {
                 }
             }
         }
-    }
-
-    func selected(_ foodbank: Foodbank) {
-        if dataController.selectedFoodbank != nil {
-            dataController.select(nil)
-            Task {
-                try await Task.sleep(for: .seconds(0.01))
-                dataController.select(foodbank)
-            }
-        } else {
-            dataController.select(foodbank)
-        }
-
-        selectedView = SavedFoodbankView.tag
     }
 }
 

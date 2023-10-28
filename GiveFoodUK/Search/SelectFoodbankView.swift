@@ -9,17 +9,15 @@ import SwiftUI
 import TipKit
 
 struct SelectFoodbankView: View {
-    @AppStorage("criteria") var criteria = ""
-    @AppStorage("url") var url = "https://www.givefood.org.uk/api/2/foodbanks/search/?address="
-    
-    @AppStorage("isList") var isList = true
-
     @Environment(DataController.self) private var dataController
     @EnvironmentObject var router: Router
+
+    @AppStorage("isList") var isList = true
 
     @State private var state = LoadState.loading
 
     let searchType: SearchType
+    @Binding var criteria: String
 
     let changeViewTip = ChangeViewTip()
 
@@ -28,15 +26,15 @@ struct SelectFoodbankView: View {
             switch state {
             case .loading:
                 ProgressView("Loading…")
-            case .failed:
-                FailedView(action: fetchFoodbanks)
-            case .loaded(let foodbanks):
+            case .loadedLocation(let foodbanks):
                 TipView(changeViewTip)
                     .tipBackground(.blue.opacity(0.2))
                 LoadedFoodbankView(foodbanks: foodbanks)
+            default:
+                FailedView(action: fetchFoodbanks)
             }
         }
-        .navigationTitle("Nearby \(searchType == .postcode ? "for \(criteria)" : "your Location")")
+        .navigationTitle("Nearby \(searchType == .postcode ? "for \(criteria)" : "Your Location")")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .task {
@@ -46,7 +44,7 @@ struct SelectFoodbankView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    dataController.select(nil)
+//                    dataController.select(nil)
                     criteria = ""
                     router.path.removeLast()
                 } label: {
@@ -71,6 +69,7 @@ struct SelectFoodbankView: View {
 
     func fetchFoodbanks() {
         state = .loading
+        
 
         Task {
             try await Task.sleep(for: .seconds(0.5))
@@ -83,7 +82,7 @@ struct SelectFoodbankView: View {
 #Preview {
     TabView {
         NavigationStack {
-            SelectFoodbankView(searchType: .postcode)
+            SelectFoodbankView(searchType: .postcode, criteria: .constant("BA1 1AA"))
                 .environment(DataController())
                 .environmentObject(Router())
         }

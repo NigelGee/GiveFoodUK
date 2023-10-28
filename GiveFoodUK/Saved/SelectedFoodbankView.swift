@@ -9,10 +9,10 @@ import SwiftUI
 
 struct SelectedFoodbankView: View {
     @Environment(DataController.self) private var dataController
+
     let foodbank: Foodbank
 
     var body: some View {
-        NavigationStack {
             List {
                 Section {
                     NavigationLink("Details") {
@@ -43,12 +43,6 @@ struct SelectedFoodbankView: View {
             }
             .navigationTitle("\(foodbank.name)'s Foodbank")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                Button("Clear") {
-                    dataController.select(nil)
-                }
-            }
-        }
     }
 }
 

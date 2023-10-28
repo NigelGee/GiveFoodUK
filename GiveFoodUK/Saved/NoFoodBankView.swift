@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct NoFoodBankView: View {
+    @AppStorage("selectedView") var selectedView: String?
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ContentUnavailableView {
+            Label("No Foodbank Saved!", systemImage: "house")
+        } description: {
+            Text("Select a food bank to save details.")
+        } actions: {
+            Button {
+                selectedView = EnterLocationView.tag
+            } label: {
+                Label("Search", systemImage: "magnifyingglass")
+            }
+            .buttonStyle(.borderedColor(with: .indigo))
+        }
     }
 }
 
