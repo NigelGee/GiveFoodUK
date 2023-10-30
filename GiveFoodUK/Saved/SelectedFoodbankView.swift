@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SelectedFoodbankView: View {
+    // FOR BETA TESTING TO SEE IF TO INCLUDE NEARBY FOODBANKS
+    @State private var showNearbyFoodbanks = true
+
     @Environment(DataController.self) private var dataController
 
     let foodbank: Foodbank
@@ -20,8 +23,11 @@ struct SelectedFoodbankView: View {
                     }
                     
                     NavigationLink("Drop-Off Point") {
-                        DropOffView(foodbank: foodbank)
+                        DropOffView(foodbank: foodbank, showNearbyFoodbanks: showNearbyFoodbanks)
                     }
+
+                    // FOR BETA TESTING TO SEE IF TO INCLUDE NEARBY FOODBANKS
+                    Toggle("Show Nearby Food banks in Drop-Off screen ", isOn: $showNearbyFoodbanks)
 
                 }
                 
@@ -38,7 +44,9 @@ struct SelectedFoodbankView: View {
                 } header: {
                     Text("Requested Items")
                 } footer: {
-                    Text("Created on \(foodbank.items.formattedDate)")
+                    if let created = foodbank.items.created {
+                        Text("Created on \(created.formatted(date: .long, time: .shortened))")
+                    }
                 }
             }
             .navigationTitle("\(foodbank.name)'s Foodbank")

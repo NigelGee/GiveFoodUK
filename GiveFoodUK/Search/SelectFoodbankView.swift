@@ -27,8 +27,6 @@ struct SelectFoodbankView: View {
             case .loading:
                 ProgressView("Loading…")
             case .loadedLocation(let foodbanks):
-                TipView(changeViewTip)
-                    .tipBackground(.blue.opacity(0.2))
                 LoadedFoodbankView(foodbanks: foodbanks)
             default:
                 FailedView(action: fetchFoodbanks)
@@ -44,7 +42,6 @@ struct SelectFoodbankView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-//                    dataController.select(nil)
                     criteria = ""
                     router.path.removeLast()
                 } label: {
@@ -59,17 +56,16 @@ struct SelectFoodbankView: View {
                         changeViewTip.invalidate(reason: .actionPerformed)
                     }
                 } label: {
-                    Label("Change View", systemImage: isList ? "map" : "list.bullet")
+                    Image(systemName: isList ? "map" : "list.bullet")
                 }
-                // Not showing pop over tip!
                 .popoverTip(changeViewTip, arrowEdge: .top)
+                .accessibilityLabel("Change between Map and List View")
             }
         }
     }
 
     func fetchFoodbanks() {
         state = .loading
-        
 
         Task {
             try await Task.sleep(for: .seconds(0.5))

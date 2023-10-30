@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SavedFoodbankView: View {
     @Environment(DataController.self) private var dataController
-    @AppStorage("foodbankID") var foodbankID = "westminster"
+    @AppStorage("foodbankID") var foodbankID = "bath"
 
     static var tag = "saved"
 
@@ -30,10 +30,13 @@ struct SavedFoodbankView: View {
                 }
             }
             .toolbar {
-                Button("Clear") {
+                Button(role: .destructive) {
                     foodbankID = ""
                     state = .notSelected
+                } label: {
+                    Label("Clear Food bank", systemImage: "trash")
                 }
+
             }
         }
         .task {
@@ -42,7 +45,7 @@ struct SavedFoodbankView: View {
     }
 
     func fetchFoodBank() async {
-        guard foodbankID != "" else {
+        guard foodbankID.isNotEmpty else {
             state = .notSelected
             return
         }

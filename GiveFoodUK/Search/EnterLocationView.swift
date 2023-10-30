@@ -20,7 +20,7 @@ struct EnterLocationView: View {
 
     var body: some View {
         NavigationStack(path: $router.path) {
-            VStack{
+            ScrollView {
                 ZStack {
                     Color.white.opacity(0.7)
                         .frame(width: 350, height: 100)
@@ -54,8 +54,8 @@ struct EnterLocationView: View {
                         Text("Go")
                             .padding(.horizontal)
                     }
-                    .buttonStyle(.borderedColor(with: criteria == "" ? .cyan : .indigo))
-                    .disabled(criteria == "")
+                    .buttonStyle(.borderedColor(with: criteria.isEmpty ? .cyan : .indigo))
+                    .disabled(criteria.isEmpty)
                 }
                 .padding()
 
@@ -74,16 +74,15 @@ struct EnterLocationView: View {
                 }
                 .font(.callout)
 
-                Spacer()
-
                 Text("**Privacy:** Postcode or your location is not used by developer or *Give Food* other then to search nearby food banks")
                     .font(.caption)
-                    .padding(.horizontal)
+                    .padding()
             }
             .navigationTitle("Search")
             .navigationDestination(for: String.self) { _ in
                 SelectFoodbankView(searchType: searchType, criteria: $criteria)
             }
+            .scrollBounceBehavior(.basedOnSize)
         }
     }
 

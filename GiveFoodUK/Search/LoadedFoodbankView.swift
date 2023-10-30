@@ -41,6 +41,8 @@ struct LoadedFoodbankView: View {
                                         Text(foodbank.distanceFormatted)
                                             .font(.caption.bold())
                                     }
+                                    .accessibilityElement()
+                                    .accessibilityLabel("\(foodbank.name) is \(foodbank.distanceFormatted) away.")
 
                                     Text(foodbank.address)
                                 }

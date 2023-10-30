@@ -62,21 +62,21 @@ extension Foodbank {
         var id: String
         var needs: String
         var excess: String?
-        var created: String?
+        var created: Date?
 
-        var formattedDate: String {
-            if let created {
-                let formatter = DateFormatter()
-                formatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSS"
+//        var formattedDate: String {
+//            if let created {
+//                let formatter = DateFormatter()
+//                formatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSS"
+//
+//                if let date = formatter.date(from: created) {
+//                    return date.formatted(date: .abbreviated, time: .shortened)
+//                }
+//            }
+//            return "unknown date"
+//        }
 
-                if let date = formatter.date(from: created) {
-                    return date.formatted(date: .abbreviated, time: .shortened)
-                }
-            }
-            return "unknown date"
-        }
-
-        static let example = Items(id: "7e4e53b3", needs: "UHT Milk\nLong-Life Fruit Juice\nCooking Oil\nDrinking Chocolate\nJam\nMashed Potatoes", excess: "Example Excess Items", created: "2023-07-13T14:44:38.860")
+        static let example = Items(id: "7e4e53b3", needs: "UHT Milk\nLong-Life Fruit Juice\nCooking Oil\nDrinking Chocolate\nJam\nMashed Potatoes", excess: "Example Excess Items", created: .now)
     }
 
     struct Charity: Codable, Hashable {

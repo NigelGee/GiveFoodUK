@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FailedView: View {
-    @SceneStorage("criteria") var criteria = ""
+    @AppStorage("criteria") var criteria = ""
     @EnvironmentObject var router: Router
     var action: () -> Void
 
@@ -31,7 +31,6 @@ struct FailedView: View {
                     router.path.removeLast()
                 }
                 .buttonStyle(.borderedColor(with: .blue))
-
             }
         }
     }

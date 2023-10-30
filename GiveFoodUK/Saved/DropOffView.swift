@@ -12,6 +12,8 @@ struct DropOffView: View {
     @AppStorage("isList") var isList = true
     var foodbank: Foodbank?
 
+    let showNearbyFoodbanks: Bool
+
     let changeViewTip = ChangeViewTip()
 
     var body: some View {
@@ -55,19 +57,22 @@ struct DropOffView: View {
                             }
                         }
 
-                        Section("Nearby FoodBanks") {
-                            ForEach(foodbank.nearbyFoodbanks) { nearbyFoodbank in
-                                VStack(alignment: .leading) {
-                                    HStack {
-                                        Text(nearbyFoodbank.name)
-                                            .font(.title)
-                                        Spacer()
-                                        Image(systemName: "house")
-                                            .font(.title3)
-                                            .foregroundStyle(Color.cyan)
+                        // FOR BETA TESTING TO SEE IF TO INCLUDE NEARBY FOODBANKS
+                        if showNearbyFoodbanks {
+                            Section("Nearby FoodBanks") {
+                                ForEach(foodbank.nearbyFoodbanks) { nearbyFoodbank in
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Text(nearbyFoodbank.name)
+                                                .font(.title)
+                                            Spacer()
+                                            Image(systemName: "house")
+                                                .font(.title3)
+                                        }
+                                        
+                                        Text(nearbyFoodbank.address)
                                     }
-
-                                    Text(nearbyFoodbank.address)
+                                    .foregroundStyle(.secondary)
                                 }
                             }
                         }
@@ -75,10 +80,13 @@ struct DropOffView: View {
                     }
                 } else {
                     Map {
-                        ForEach(foodbank.nearbyFoodbanks) { nearbyFoodbank in
-                            if let coordinate = nearbyFoodbank.coordinate {
-                                Marker(nearbyFoodbank.name, systemImage: "house", coordinate: coordinate)
-                                    .tint(.cyan)
+                        // FOR BETA TESTING TO SEE IF TO INCLUDE NEARBY FOODBANKS
+                        if showNearbyFoodbanks {
+                            ForEach(foodbank.nearbyFoodbanks) { nearbyFoodbank in
+                                if let coordinate = nearbyFoodbank.coordinate {
+                                    Marker(nearbyFoodbank.name, systemImage: "house", coordinate: coordinate)
+                                        .tint(.secondary)
+                                }
                             }
                         }
 
@@ -122,6 +130,6 @@ struct DropOffView: View {
 
 #Preview {
     NavigationStack {
-        DropOffView(foodbank: .example)
+        DropOffView(foodbank: .example, showNearbyFoodbanks: true)
     }
 }

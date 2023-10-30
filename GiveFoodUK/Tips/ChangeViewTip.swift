@@ -15,7 +15,7 @@ struct ChangeViewTip: Tip {
     }
 
     var title: Text {
-        Text("Change to \(Image(systemName: "map")) Map View")
+        Text("Change to Map View")
     }
 
     var message: Text? {
@@ -23,7 +23,7 @@ struct ChangeViewTip: Tip {
     }
 
     var image: Image? {
-        Image(systemName: "hand.point.up")
+        Image(systemName: "map")
     }
 
     var rules: [Rule] {
