@@ -106,6 +106,7 @@ struct DropOffView: View {
                 }
             }
             .navigationTitle("Drop-Off Points")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 Button {
                     withAnimation {

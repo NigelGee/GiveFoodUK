@@ -25,7 +25,8 @@ struct ContentView: View {
     }
 }
 
-//#Preview {
-//    ContentView()
-//        .environment(DataController())
-//}
+#Preview {
+    ContentView()
+        .environment(DataController())
+        .environmentObject(Router())
+}

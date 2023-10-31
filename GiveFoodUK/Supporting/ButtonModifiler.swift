@@ -12,8 +12,7 @@ struct BorderedColor: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding(.horizontal, 10)
-            .padding(.vertical, 6)
+            .padding(10)
             .background(color)
             .foregroundStyle(.white)
             .multilineTextAlignment(.center)

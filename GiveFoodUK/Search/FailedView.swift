@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct FailedView: View {
-    @AppStorage("criteria") var criteria = ""
-    @EnvironmentObject var router: Router
-    var action: () -> Void
+    var retry: () -> Void
+    var location: () -> Void
+
+    init(retry: @escaping () -> Void, action location: @escaping () -> Void) {
+        self.retry = retry
+        self.location = location
+    }
 
     var body: some View {
         ContentUnavailableView {
@@ -22,21 +26,18 @@ struct FailedView: View {
             Check location details and retry.
             """)
         } actions: {
-            VStack(spacing: 0) {
-                Button("Retry", systemImage: "arrow.circlepath", action: action)
+            VStack(spacing: 10) {
+                Button("Retry", systemImage: "arrow.circlepath", action: retry)
                     .buttonStyle(.borderedColor(with: .red))
 
-                Button("Change Location", systemImage: "location.fill") {
-                    criteria = ""
-                    router.path.removeLast()
-                }
+                Button("Change Location", systemImage: "location.fill", action: location)
                 .buttonStyle(.borderedColor(with: .blue))
             }
         }
+        .dynamicTypeSize(...DynamicTypeSize.accessibility3)
     }
 }
 
 #Preview {
-    FailedView() { }
-        .environmentObject(Router())
+    FailedView() { } action: { }
 }

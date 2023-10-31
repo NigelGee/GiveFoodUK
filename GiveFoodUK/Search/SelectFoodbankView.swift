@@ -29,7 +29,7 @@ struct SelectFoodbankView: View {
             case .loadedLocation(let foodbanks):
                 LoadedFoodbankView(foodbanks: foodbanks)
             default:
-                FailedView(action: fetchFoodbanks)
+                FailedView(retry: fetchFoodbanks, action: changeLocation)
             }
         }
         .navigationTitle("Nearby \(searchType == .postcode ? "for \(criteria)" : "Your Location")")
@@ -42,8 +42,7 @@ struct SelectFoodbankView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    criteria = ""
-                    router.path.removeLast()
+                    changeLocation()
                 } label: {
                     Label("Change Location", systemImage: "location")
                 }
@@ -72,6 +71,11 @@ struct SelectFoodbankView: View {
 
             state = await dataController.loadFoodbanks(searchType, for: criteria)
         }
+    }
+
+    func changeLocation() {
+        criteria = ""
+        router.path.removeLast()
     }
 }
 
