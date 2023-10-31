@@ -119,8 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				8B26579D2AE7BC800015A3C7 /* DataController.swift */,
-				8B4B25582AEBE4C900C73CFB /* FoodbankLocation.swift */,
-				8B26579B2AE7BC800015A3C7 /* Foodbank.swift */,
 				8B26579C2AE7BC800015A3C7 /* Location.swift */,
 				8B26579F2AE7BC800015A3C7 /* Router.swift */,
 				8B4B25532AEACFF100C73CFB /* LocationManager.swift */,
@@ -135,6 +133,7 @@
 		8B2657B32AE7BD2F0015A3C7 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				8B4B25582AEBE4C900C73CFB /* FoodbankLocation.swift */,
 				8B2657AB2AE7BD200015A3C7 /* EnterLocationView.swift */,
 				8B2657AE2AE7BD200015A3C7 /* SelectFoodbankView.swift */,
 				8B2657AC2AE7BD200015A3C7 /* LoadedFoodbankView.swift */,
@@ -146,6 +145,7 @@
 		8B2657BC2AE7BD860015A3C7 /* Saved */ = {
 			isa = PBXGroup;
 			children = (
+				8B26579B2AE7BC800015A3C7 /* Foodbank.swift */,
 				8B2657B62AE7BD780015A3C7 /* SavedFoodbankView.swift */,
 				8B2657B52AE7BD780015A3C7 /* SelectedFoodbankView.swift */,
 				8B2657B72AE7BD780015A3C7 /* DetailFoodbankView.swift */,

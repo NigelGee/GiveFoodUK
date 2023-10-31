@@ -54,7 +54,7 @@ struct EnterLocationView: View {
                         Text("Go")
                             .padding(.horizontal)
                     }
-                    .buttonStyle(.borderedColor(with: criteria.isEmpty ? .cyan : .indigo))
+                    .buttonStyle(.borderedColor(with: criteria.isEmpty ? .secondary : .blue))
                     .disabled(criteria.isEmpty)
                 }
                 .padding()
@@ -64,7 +64,7 @@ struct EnterLocationView: View {
                 }
                 .frame(minHeight: 44)
                 .foregroundStyle(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .clipShape(.rect(cornerRadius: 10))
 
                 Group {
                     Text("**Give Food** is a UK charity that uses data to highlight local and structural food insecurity then provides tools to help alleviate it.")

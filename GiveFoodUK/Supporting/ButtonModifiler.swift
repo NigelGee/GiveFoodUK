@@ -17,11 +17,11 @@ struct BorderedColor: ButtonStyle {
             .background(color)
             .foregroundStyle(.white)
             .multilineTextAlignment(.center)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .clipShape(.rect(cornerRadius: 8))
             .overlay(
                 Color.black
                     .opacity(configuration.isPressed ? 0.3 : 0)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .clipShape(.rect(cornerRadius: 10))
             )
             .frame(minHeight: 44)
             .hoverEffect()

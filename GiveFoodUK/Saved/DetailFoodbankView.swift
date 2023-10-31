@@ -73,7 +73,7 @@ struct DetailFoodbankView: View {
                     LabeledContent("District:", value: foodbank.politics.district)
 
                     Link("Write to your MP", destination: URL(string: "https://www.givefood.org.uk/write/")!)
-                        .buttonStyle(.borderedColor(with: .mint))
+                        .buttonStyle(.borderedColor(with: .indigo))
                         .frame(maxWidth: .infinity, alignment: .center)
 
                 }

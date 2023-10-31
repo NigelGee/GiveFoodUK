@@ -14,7 +14,7 @@ struct GiveFoodUKApp: App {
     @StateObject var router = Router()
 
     init() {
-//        try? Tips.resetDatastore()
+        try? Tips.resetDatastore()
 //        Tips.showTipsForTesting([ChangeViewTip.self])
         try? Tips.configure([.displayFrequency(.daily)])
 
