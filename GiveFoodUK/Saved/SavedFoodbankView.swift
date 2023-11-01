@@ -26,17 +26,22 @@ struct SavedFoodbankView: View {
                 case .loaded(let foodbank):
                     SelectedFoodbankView(foodbank: foodbank)
                 default:
-                    Text("Failed")
+                    NoInternetView {
+                        Task {
+                            await fetchFoodBank()
+                        }
+                    }
                 }
             }
             .toolbar {
-                Button(role: .destructive) {
-                    foodbankID = ""
-                    state = .notSelected
-                } label: {
-                    Label("Clear Food bank", systemImage: "trash")
+                if foodbankID.isNotEmpty {
+                    Button(role: .destructive) {
+                        foodbankID = ""
+                        state = .notSelected
+                    } label: {
+                        Label("Clear Food bank", systemImage: "trash")
+                    }
                 }
-
             }
         }
         .task {

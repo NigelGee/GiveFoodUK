@@ -34,32 +34,21 @@ struct SelectFoodbankView: View {
         }
         .navigationTitle("Nearby \(searchType == .postcode ? "for \(criteria)" : "Your Location")")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
         .task {
             fetchFoodbanks()
             await ChangeViewTip.changeViewEvent.donate()
         }
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    changeLocation()
-                } label: {
-                    Label("Change Location", systemImage: "location")
+            Button {
+                withAnimation {
+                    isList.toggle()
+                    changeViewTip.invalidate(reason: .actionPerformed)
                 }
+            } label: {
+                Image(systemName: isList ? "map" : "list.bullet")
             }
-
-            ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    withAnimation {
-                        isList.toggle()
-                        changeViewTip.invalidate(reason: .actionPerformed)
-                    }
-                } label: {
-                    Image(systemName: isList ? "map" : "list.bullet")
-                }
-                .popoverTip(changeViewTip, arrowEdge: .top)
-                .accessibilityLabel("Change between Map and List View")
-            }
+            .popoverTip(changeViewTip, arrowEdge: .top)
+            .accessibilityLabel("Change between Map and List View")
         }
     }
 

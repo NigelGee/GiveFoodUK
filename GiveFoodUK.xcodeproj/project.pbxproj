@@ -32,6 +32,7 @@
 		8B4B255B2AEC1BC200C73CFB /* SearchType-enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B255A2AEC1BC200C73CFB /* SearchType-enum.swift */; };
 		8B4B255D2AED3F3A00C73CFB /* NoFoodBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B255C2AED3F3A00C73CFB /* NoFoodBankView.swift */; };
 		8B4B255F2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B255E2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift */; };
+		8B8A6FE22AF2A76B00BF3E45 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A6FE12AF2A76B00BF3E45 /* NoInternetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		8B4B255A2AEC1BC200C73CFB /* SearchType-enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchType-enum.swift"; sourceTree = "<group>"; };
 		8B4B255C2AED3F3A00C73CFB /* NoFoodBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFoodBankView.swift; sourceTree = "<group>"; };
 		8B4B255E2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection-IsNotEmpty.swift"; sourceTree = "<group>"; };
+		8B8A6FE12AF2A76B00BF3E45 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				8B2657B72AE7BD780015A3C7 /* DetailFoodbankView.swift */,
 				8B2657B42AE7BD780015A3C7 /* DropOffView.swift */,
 				8B4B255C2AED3F3A00C73CFB /* NoFoodBankView.swift */,
+				8B8A6FE12AF2A76B00BF3E45 /* NoInternetView.swift */,
 			);
 			path = Saved;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				8B26578F2AE7BBF40015A3C7 /* ContentView.swift in Sources */,
 				8B2657BA2AE7BD780015A3C7 /* SavedFoodbankView.swift in Sources */,
 				8B2657A52AE7BC800015A3C7 /* DataController.swift in Sources */,
+				8B8A6FE22AF2A76B00BF3E45 /* NoInternetView.swift in Sources */,
 				8B2657AF2AE7BD200015A3C7 /* EnterLocationView.swift in Sources */,
 				8B2657A32AE7BC800015A3C7 /* Foodbank.swift in Sources */,
 				8B4B255F2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift in Sources */,
@@ -388,7 +392,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"GiveFoodUK/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;
@@ -421,7 +425,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"GiveFoodUK/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;

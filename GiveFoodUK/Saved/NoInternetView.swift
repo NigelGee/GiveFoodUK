@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct NoInternetView: View {
+    let retry: () -> Void
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ContentUnavailableView {
+            Label("Failed to Load", systemImage: "wifi.exclamationmark")
+                .symbolRenderingMode(.hierarchical)
+        } description: {
+            Text("Check your internet connection.")
+        } actions: {
+            Button("Try Again!", systemImage: "arrow.circlepath", action: retry)
+                .buttonStyle(.borderedColor(with: .red))
+        }
     }
 }
 
 #Preview {
-    NoInternetView()
+    NoInternetView() { }
 }

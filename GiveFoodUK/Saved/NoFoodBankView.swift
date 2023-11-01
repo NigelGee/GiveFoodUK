@@ -14,7 +14,7 @@ struct NoFoodBankView: View {
         ContentUnavailableView {
             Label("No Foodbank Saved!", systemImage: "house")
         } description: {
-            Text("Select a food bank to save details.")
+            Text("Search and select a food bank to save details.")
         } actions: {
             Button {
                 selectedView = EnterLocationView.tag
