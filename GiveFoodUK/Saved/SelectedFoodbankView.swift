@@ -27,7 +27,7 @@ struct SelectedFoodbankView: View {
                     }
 
                     // FOR BETA TESTING TO SEE IF TO INCLUDE NEARBY FOODBANKS
-                    Toggle("Show Nearby Food banks in Drop-Off screen ", isOn: $showNearbyFoodbanks)
+                    Toggle("*Show Nearby Food banks in Drop-Off screen (Beta Testing Only)*", isOn: $showNearbyFoodbanks)
 
                 }
                 
@@ -46,6 +46,16 @@ struct SelectedFoodbankView: View {
                 } footer: {
                     if let created = foodbank.items.created {
                         Text("Created on \(created.formatted(date: .long, time: .shortened))")
+                    }
+                }
+                
+                if let excessItems = foodbank.excessItems {
+                    Section("Not Needed") {
+                        ForEach(excessItems) { item in
+                            Text(item.excess ?? "Unknown")
+                                .foregroundStyle(.secondary)
+                                .strikethrough()
+                        }
                     }
                 }
             }

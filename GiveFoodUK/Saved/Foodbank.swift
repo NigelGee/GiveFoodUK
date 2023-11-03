@@ -34,6 +34,18 @@ struct Foodbank: Codable, Identifiable, Hashable {
         return baseList.map { Items(id: UUID().uuidString, needs: $0) }
     }
 
+    var excessItems: [Items]? {
+        if items.excess != "" {
+            if let items = items.excess?.components(separatedBy: .newlines) {
+                if items.isNotEmpty {
+                    return items.map { Items(id: UUID().uuidString, needs: "", excess: $0)}
+                }
+            }
+        }
+
+        return nil
+    }
+
     var coordinate: CLLocationCoordinate2D? {
         let components = location.split(separator: ",").compactMap(Double.init)
         guard components.count == 2 else { return nil }

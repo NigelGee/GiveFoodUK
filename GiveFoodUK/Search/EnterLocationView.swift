@@ -21,17 +21,14 @@ struct EnterLocationView: View {
     var body: some View {
         NavigationStack(path: $router.path) {
             ScrollView {
-                ZStack {
-                    Color.white.opacity(0.7)
-                        .frame(width: 350, height: 100)
-                        .cornerRadius(10)
-
-                    Image(.logo)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 80)
-                }
-                .padding()
+                Image(.logo)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 80)
+                    .padding()
+                    .background(.white.opacity(0.2))
+                    .clipShape(.rect(cornerRadius: 15))
+                    .padding()
 
                 Text("Welcome")
                     .font(.largeTitle)
@@ -74,7 +71,7 @@ struct EnterLocationView: View {
                 }
                 .font(.callout)
 
-                Text("**Privacy:** Postcode or your location is not used by developer or *Give Food* other then to search nearby food banks")
+                Text("**Privacy:** Postcode or your location is not stored by developer or *Give Food* other then to search nearby food banks. The app only store your preference to Map/List View and the Saved food bank ID.")
                     .font(.caption)
                     .padding()
             }
@@ -83,6 +80,7 @@ struct EnterLocationView: View {
                 SelectFoodbankView(searchType: searchType, criteria: $criteria)
             }
             .scrollBounceBehavior(.basedOnSize)
+            .onAppear { criteria = "" }
         }
     }
 
