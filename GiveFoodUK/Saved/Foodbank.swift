@@ -16,7 +16,7 @@ struct Foodbank: Codable, Identifiable, Hashable {
     var id: String { slug }
     var name: String
     var slug: String
-    var phone: String
+    var phone: String?
     var email: String
     var address: String
     var location: String
@@ -54,15 +54,19 @@ struct Foodbank: Codable, Identifiable, Hashable {
     }
 
     var formattedPhone: String {
-        if phone.contains("x") {
-            var newPhone = ""
-            for tel in phone {
-                if tel == "x" { break }
-                newPhone.append(tel)
+        if let phone {
+            if phone.contains("x") {
+                var newPhone = ""
+                for tel in phone {
+                    if tel == "x" { break }
+                    newPhone.append(tel)
+                }
+                return newPhone
             }
-            return newPhone
+            return phone
+        } else {
+            return "Unknown"
         }
-        return phone
     }
 
     static let example = Foodbank(name: "Westminster", slug: "westminster", phone: "02078341731x224", email: "foodbank@westminsterchapel.org.uk", address: "Westminster Chapel\r\nBuckingham Gate\r\nLondon\r\nSW1E 6BS", location: "51.49888499999999,-0.138101", URLS: .example, charity: .example, locations: [], politics: .example, items: .example, nearbyFoodbanks: [.example])

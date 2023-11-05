@@ -15,6 +15,7 @@ enum LoadState {
 class DataController {
     func loadFoodbanks(_ searchType: SearchType, for criteria: String) async -> LoadState {
         let fullURL = searchType.rawValue + criteria
+        print(fullURL)
 
         guard let url = URL(string: fullURL) else { return .failed }
 
@@ -34,6 +35,7 @@ class DataController {
     func loadFoodbank(for foodbankID: String) async -> LoadState {
         
         let fullURL = "https://www.givefood.org.uk/api/2/foodbank/\(foodbankID)"
+        print(fullURL)
 
         guard let url = URL(string: fullURL) else { return .failed }
 

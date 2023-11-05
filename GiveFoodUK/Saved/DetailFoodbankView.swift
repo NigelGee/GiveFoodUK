@@ -35,11 +35,16 @@ struct DetailFoodbankView: View {
 
             VStack(alignment: .leading) {
                 Text("Phone:")
-                if let url = URL(string: "tel: \(foodbank.formattedPhone)") {
-                    Link(foodbank.phone, destination: url)
+                if let phone = foodbank.phone {
+                    if let url = URL(string: "tel: \(foodbank.formattedPhone)") {
+                        Link(phone, destination: url)
+                    }
+                } else {
+                    Text("Unknown")
+                        .foregroundStyle(.secondary)
                 }
             }
-            .accessibilityLabel("Phone number is \(foodbank.phone)")
+            .accessibilityLabel("Phone number is \(foodbank.phone ?? "Unknown")")
 
             if let url = URL(string: foodbank.URLS.homepage) {
                 VStack(alignment: .leading) {
