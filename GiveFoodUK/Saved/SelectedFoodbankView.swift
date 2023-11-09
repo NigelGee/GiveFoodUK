@@ -31,10 +31,14 @@ struct SelectedFoodbankView: View {
 
                 }
                 
-                if let shoppingList = foodbank.URLS.shoppingList {
-                    if let shoppingListURL = URL(string: shoppingList) {
-                        Link("Foodbank's Shopping List", destination: shoppingListURL)
+                Section {
+                    if let shoppingList = foodbank.URLS.shoppingList {
+                        if let shoppingListURL = URL(string: shoppingList) {
+                            Link("Foodbank's Shopping List", destination: shoppingListURL)
+                        }
                     }
+                } footer: {
+                    Text("The food bank shopping list on their own website might show additional items not yet added to this list.")
                 }
 
                 Section {
@@ -45,7 +49,7 @@ struct SelectedFoodbankView: View {
                     Text("Requested Items")
                 } footer: {
                     if let created = foodbank.items.created {
-                        Text("Created on \(created.formatted(date: .long, time: .shortened))")
+                        Text("Last updated on \(created.formatted(date: .long, time: .shortened))")
                     }
                 }
                 

@@ -8,6 +8,7 @@
 import SwiftUI
 import TipKit
 
+/// A view which show view depending on state of API call.
 struct SelectFoodbankView: View {
     @Environment(DataController.self) private var dataController
     @EnvironmentObject var router: Router
@@ -52,6 +53,7 @@ struct SelectFoodbankView: View {
         }
     }
 
+    /// A method that set `state` and loads food banks
     func fetchFoodbanks() {
         state = .loading
 
@@ -61,7 +63,8 @@ struct SelectFoodbankView: View {
             state = await dataController.loadFoodbanks(searchType, for: criteria)
         }
     }
-
+    
+    /// Change the search again if load fails
     func changeLocation() {
         criteria = ""
         router.path.removeLast()

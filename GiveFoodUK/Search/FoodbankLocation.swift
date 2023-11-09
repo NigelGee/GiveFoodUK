@@ -8,6 +8,7 @@
 import CoreLocation
 import Foundation
 
+/// A model for decoding food banks from JSON
 struct FoodbankLocation: Codable, Identifiable, Hashable {
     private enum CodingKeys: String, CodingKey {
         case name, slug, foodbankDetail = "foodbank", address, location = "lat_lng", distance = "distance_m", type
@@ -19,17 +20,20 @@ struct FoodbankLocation: Codable, Identifiable, Hashable {
     var location: String
     var distance: Int
     var type: String?
-
+    
+    /// A property that uses a `slug` from JSON. In `Current Location` JSON the `slug` is in another property of "foodbank"
     var id: String {
         slug ?? foodbankDetail?.slug ?? ""
     }
-
+    
+    /// Format distance (in metric) to user preference
     var distanceFormatted: String {
         let measurement = Measurement(value: Double(distance), unit: UnitLength.meters)
 
         return measurement.formatted(.measurement(width: .abbreviated))
     }
-
+    
+    /// Format coordinates to `CLLocationCoordinate2D`
     var coordinate: CLLocationCoordinate2D? {
         let components = location.split(separator: ",").compactMap(Double.init)
         guard components.count == 2 else { return nil }
@@ -41,6 +45,8 @@ struct FoodbankLocation: Codable, Identifiable, Hashable {
 }
 
 extension FoodbankLocation {
+
+    /// A struct to decode food banks when searching via `Current Location`
     struct FoodbankDetail: Codable, Hashable {
         var slug: String
     }

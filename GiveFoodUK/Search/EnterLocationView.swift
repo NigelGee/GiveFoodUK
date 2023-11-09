@@ -8,12 +8,17 @@
 import CoreLocationUI
 import SwiftUI
 
+/// A view that enable user to enter a postcode/town or use current location to search for nearby food banks
 struct EnterLocationView: View {
     @Environment(DataController.self) private var dataController
     @EnvironmentObject var router: Router
 
     @State private var locationManager = LocationManager()
+
+    /// A property that will be used in `URL` to retrieve JSON data
     @State private var criteria = ""
+
+    /// A property that will have the search type choose
     @State private var searchType: SearchType = .currentLocation
 
     static var tag = "search"
@@ -26,7 +31,7 @@ struct EnterLocationView: View {
                     .scaledToFit()
                     .frame(height: 80)
                     .padding()
-                    .background(.white.opacity(0.2))
+                    .background(.titleColor)
                     .clipShape(.rect(cornerRadius: 15))
                     .padding()
 
@@ -51,7 +56,7 @@ struct EnterLocationView: View {
                         Text("Go")
                             .padding(.horizontal)
                     }
-                    .buttonStyle(.borderedColor(with: criteria.isEmpty ? .secondary : .blue))
+                    .buttonStyle(.borderedColor(with: criteria.isEmpty ? .titleColor : .blue))
                     .disabled(criteria.isEmpty)
                 }
                 .padding()
@@ -83,7 +88,8 @@ struct EnterLocationView: View {
             .onAppear { criteria = "" }
         }
     }
-
+    
+    /// A method that request current location of user and set properties
     func getLocation() {
         locationManager.requestLocation()
         if let location = locationManager.location {

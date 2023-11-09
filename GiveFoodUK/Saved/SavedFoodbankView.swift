@@ -35,11 +35,13 @@ struct SavedFoodbankView: View {
             }
             .toolbar {
                 if foodbankID.isNotEmpty {
-                    Button(role: .destructive) {
-                        foodbankID = ""
-                        state = .notSelected
-                    } label: {
-                        Label("Clear Food bank", systemImage: "trash")
+                    ToolbarItem(placement: .destructiveAction) {
+                        Button {
+                            foodbankID = ""
+                            state = .notSelected
+                        } label: {
+                            Label("Clear Food bank", systemImage: "trash")
+                        }
                     }
                 }
             }

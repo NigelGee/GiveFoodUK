@@ -12,7 +12,8 @@ import TipKit
 struct GiveFoodUKApp: App {
     @State private var dataController = DataController()
     @StateObject var router = Router()
-
+    
+    /// Configure TipKit
     init() {
 //        try? Tips.resetDatastore()
 //        Tips.showTipsForTesting([ChangeViewTip.self])

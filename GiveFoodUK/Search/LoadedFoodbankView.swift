@@ -9,6 +9,7 @@ import MapKit
 import SwiftUI
 import TipKit
 
+/// A view that shows a list or map (depend on user preference) of nearby food bank from criteria and set type of search to determine which API call to make.
 struct LoadedFoodbankView: View {
     @AppStorage("selectedView") var selectedView: String?
     @AppStorage("foodbankID") var foodbankID = ""

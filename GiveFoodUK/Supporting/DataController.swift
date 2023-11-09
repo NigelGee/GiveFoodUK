@@ -40,7 +40,7 @@ class DataController {
         guard let url = URL(string: fullURL) else { return .failed }
 
         let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSS"
+        formatter.dateFormat = "y-MM-dd'T'HH:mm:ss.SSS"
 
         do {
             let foodbank = try await URLSession.shared.decode(Foodbank.self, from: url, dateDecodingStrategy: .formatted(formatter))

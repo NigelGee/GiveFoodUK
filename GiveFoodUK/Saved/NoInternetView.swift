@@ -15,7 +15,10 @@ struct NoInternetView: View {
             Label("Failed to Load", systemImage: "wifi.exclamationmark")
                 .symbolRenderingMode(.hierarchical)
         } description: {
-            Text("Check your internet connection.")
+            Text("""
+            Opps something went wrong!
+            Check your internet connection.
+            """)
         } actions: {
             Button("Try Again!", systemImage: "arrow.circlepath", action: retry)
                 .buttonStyle(.borderedColor(with: .red))

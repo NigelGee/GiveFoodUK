@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A view if API call fails
 struct FailedView: View {
     var retry: () -> Void
     var location: () -> Void

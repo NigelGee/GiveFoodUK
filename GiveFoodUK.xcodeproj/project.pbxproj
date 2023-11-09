@@ -33,6 +33,7 @@
 		8B4B255D2AED3F3A00C73CFB /* NoFoodBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B255C2AED3F3A00C73CFB /* NoFoodBankView.swift */; };
 		8B4B255F2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B255E2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift */; };
 		8B8A6FE22AF2A76B00BF3E45 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A6FE12AF2A76B00BF3E45 /* NoInternetView.swift */; };
+		8BAC87E72AFAF9FB00167BD3 /* ShapeStyle-Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC87E62AFAF9FB00167BD3 /* ShapeStyle-Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		8B4B255C2AED3F3A00C73CFB /* NoFoodBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFoodBankView.swift; sourceTree = "<group>"; };
 		8B4B255E2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection-IsNotEmpty.swift"; sourceTree = "<group>"; };
 		8B8A6FE12AF2A76B00BF3E45 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
+		8BAC87E62AFAF9FB00167BD3 /* ShapeStyle-Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeStyle-Color.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				8B26579F2AE7BC800015A3C7 /* Router.swift */,
 				8B4B25532AEACFF100C73CFB /* LocationManager.swift */,
 				8B26579E2AE7BC800015A3C7 /* ButtonModifiler.swift */,
+				8BAC87E62AFAF9FB00167BD3 /* ShapeStyle-Color.swift */,
 				8B4B25562AEAE44B00C73CFB /* URLSession-Decodable.swift */,
 				8B4B255A2AEC1BC200C73CFB /* SearchType-enum.swift */,
 				8B4B255E2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift */,
@@ -249,6 +252,7 @@
 				8B2657AF2AE7BD200015A3C7 /* EnterLocationView.swift in Sources */,
 				8B2657A32AE7BC800015A3C7 /* Foodbank.swift in Sources */,
 				8B4B255F2AED7CFB00C73CFB /* Collection-IsNotEmpty.swift in Sources */,
+				8BAC87E72AFAF9FB00167BD3 /* ShapeStyle-Color.swift in Sources */,
 				8B4B25542AEACFF100C73CFB /* LocationManager.swift in Sources */,
 				8B2657A42AE7BC800015A3C7 /* Location.swift in Sources */,
 				8B2657BB2AE7BD780015A3C7 /* DetailFoodbankView.swift in Sources */,
@@ -392,7 +396,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"GiveFoodUK/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;
@@ -425,7 +429,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"GiveFoodUK/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;

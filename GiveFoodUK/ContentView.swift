@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(DataController.self) var dataController
+
+    /// A property to store which tab was selected last
     @AppStorage("selectedView") var selectedView: String = EnterLocationView.tag
 
     var body: some View {
@@ -20,7 +22,6 @@ struct ContentView: View {
             SavedFoodbankView()
                 .tag(SavedFoodbankView.tag)
                 .tabItem { Label("Saved Foodbank", systemImage: "house") }
-
         }
     }
 }
