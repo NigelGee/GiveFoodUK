@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A view to show if a selected food bank does not show.
 struct NoInternetView: View {
     let retry: () -> Void
 

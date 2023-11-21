@@ -7,6 +7,7 @@
 
 import TipKit
 
+/// A view that will show how to switch between List and Map View
 struct ChangeViewTip: Tip {
     static let changeViewEvent = Event(id: "changeViewEvent")
 

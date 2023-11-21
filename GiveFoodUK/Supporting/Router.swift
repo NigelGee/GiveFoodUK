@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A model to track the Navigation Path
 class Router: ObservableObject {
     @Published var path = NavigationPath()
 

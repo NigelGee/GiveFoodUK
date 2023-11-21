@@ -8,6 +8,7 @@
 import CoreLocation
 import SwiftUI
 
+/// A model to decode individual food banks
 struct Foodbank: Codable, Identifiable, Hashable {
     private enum CodingKeys: String, CodingKey {
         case name, slug, phone, email, address, location = "lat_lng", URLS = "urls", charity, locations, politics, items = "need", nearbyFoodbanks = "nearby_foodbanks"
@@ -27,13 +28,15 @@ struct Foodbank: Codable, Identifiable, Hashable {
     var politics: Politics
     var items: Items
     var nearbyFoodbanks: [NearbyFoodbank]
-
+    
+    /// A property to format "needs" to an array
     var neededItems: [Items] {
         let baseList = items.needs.components(separatedBy: .newlines)
 
         return baseList.map { Items(id: UUID().uuidString, needs: $0) }
     }
-
+    
+    /// A property to format "excess" to an array
     var excessItems: [Items]? {
         if items.excess != "" {
             if let items = items.excess?.components(separatedBy: .newlines) {
@@ -45,14 +48,16 @@ struct Foodbank: Codable, Identifiable, Hashable {
 
         return nil
     }
-
+    
+    /// A property to format `location`
     var coordinate: CLLocationCoordinate2D? {
         let components = location.split(separator: ",").compactMap(Double.init)
         guard components.count == 2 else { return nil }
 
         return CLLocationCoordinate2D(latitude: components[0], longitude: components[1])
     }
-
+    
+    /// A property to format `phone` to able in `Link`
     var formattedPhone: String {
         if let phone {
             if phone.contains("x") {
@@ -74,6 +79,8 @@ struct Foodbank: Codable, Identifiable, Hashable {
 }
 
 extension Foodbank {
+
+    /// A model to decode `needs` items
     struct Items: Codable, Identifiable, Hashable {
         var id: String
         var needs: String
@@ -82,7 +89,8 @@ extension Foodbank {
 
         static let example = Items(id: "7e4e53b3", needs: "UHT Milk\nLong-Life Fruit Juice\nCooking Oil\nDrinking Chocolate\nJam\nMashed Potatoes", excess: "Example Excess Items", created: .now)
     }
-
+    
+    /// A model to decode `charity` field
     struct Charity: Codable, Hashable {
         private enum CodingKeys: String, CodingKey {
             case registrationID = "registration_id", registerURL = "register_url"
@@ -93,7 +101,8 @@ extension Foodbank {
 
         static let example = Charity(registrationID: "1144831", registerURL: "https://register-of-charities.charitycommission.gov.uk/charity-details/?regid=1144831&subid=0")
     }
-
+    
+    /// A model to decode `politics` field
     struct Politics: Codable, Hashable {
         private enum CodingKeys: String, CodingKey {
             case parliamentaryConstituency = "parliamentary_constituency", mp, mpParty = "mp_party", ward, district
@@ -104,7 +113,8 @@ extension Foodbank {
         var mpParty: String
         var ward: String
         var district: String
-
+        
+        /// A property to format the `mpParty` to `Color`
         var rosetteColor: Color {
             switch mpParty {
             case "Conservative": .blue
@@ -119,7 +129,8 @@ extension Foodbank {
 
         static let example = Politics(parliamentaryConstituency: "Cities of London and Westminster", mp: "Nickie Aiken", mpParty: "Conservative", ward: "St James's", district: "Westminster")
     }
-
+    
+    /// A model to decode `urls` field
     struct URLS: Codable, Hashable {
         private enum CodingKeys: String, CodingKey {
             case shoppingList = "shopping_list", homepage
@@ -141,7 +152,8 @@ extension Foodbank {
         var slug: String
         var address: String
         var location: String
-
+        
+        /// A property to format `location`
         var coordinate: CLLocationCoordinate2D? {
             let components = location.split(separator: ",").compactMap(Double.init)
             guard components.count == 2 else { return nil }

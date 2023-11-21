@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A Button style to give Rounded Rectangle to a given Color
 struct BorderedColor: ButtonStyle {
     let color: Color
 

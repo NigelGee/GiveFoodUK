@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A view to show when no food banks are selected
 struct NoFoodBankView: View {
     @AppStorage("selectedView") var selectedView: String?
 

@@ -8,6 +8,9 @@
 import MapKit
 import SwiftUI
 
+/// A view that shows the nearby drop off points
+///
+/// This can viewed in either a list or map of the food bank and drop off points
 struct DropOffView: View {
     @AppStorage("isList") var isList = true
     var foodbank: Foodbank?

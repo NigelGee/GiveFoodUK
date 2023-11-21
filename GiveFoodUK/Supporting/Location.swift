@@ -8,6 +8,7 @@
 import CoreLocation
 import Foundation
 
+/// A model to decode the location of food banks
 struct Location: Codable, Identifiable, Hashable {
     enum CodingKeys: String, CodingKey {
         case name, slug, address, location = "lat_lng"

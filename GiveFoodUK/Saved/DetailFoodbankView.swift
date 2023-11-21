@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A view that shows the details of selected food bank
 struct DetailFoodbankView: View {
     let foodbank: Foodbank
 

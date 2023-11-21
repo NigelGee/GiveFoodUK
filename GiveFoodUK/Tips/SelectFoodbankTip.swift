@@ -7,6 +7,7 @@
 
 import TipKit
 
+/// A View that show how to save and select a food bank
 struct SelectFoodbankTip: Tip {
     var title: Text {
         Text("Select a Foodbank")

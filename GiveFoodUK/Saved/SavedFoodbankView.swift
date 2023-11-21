@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A view that shows views depending on the state of loading
 struct SavedFoodbankView: View {
     @Environment(DataController.self) private var dataController
     @AppStorage("foodbankID") var foodbankID = "bath"
@@ -50,7 +51,8 @@ struct SavedFoodbankView: View {
             await fetchFoodBank()
         }
     }
-
+    
+    /// A method that fetch individual food bank details
     func fetchFoodBank() async {
         guard foodbankID.isNotEmpty else {
             state = .notSelected

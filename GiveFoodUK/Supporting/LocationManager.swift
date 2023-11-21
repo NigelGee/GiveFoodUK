@@ -7,6 +7,7 @@
 
 import CoreLocation
 
+/// A class to manage the request for Location
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     let manager = CLLocationManager()
 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A view of a selected food bank
 struct SelectedFoodbankView: View {
     // FOR BETA TESTING TO SEE IF TO INCLUDE NEARBY FOODBANKS
     @State private var showNearbyFoodbanks = true
@@ -38,7 +39,7 @@ struct SelectedFoodbankView: View {
                         }
                     }
                 } footer: {
-                    Text("The food bank shopping list on their own website might show additional items not yet added to this list.")
+                    Text("The food bank shopping list on their own website might show additional items not yet added to requested items.")
                 }
 
                 Section {
