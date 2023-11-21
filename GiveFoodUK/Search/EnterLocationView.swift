@@ -26,7 +26,7 @@ struct EnterLocationView: View {
     var body: some View {
         NavigationStack(path: $router.path) {
             ScrollView {
-                Image(.logo)
+                Image(.logoName)
                     .resizable()
                     .scaledToFit()
                     .frame(height: 80)
