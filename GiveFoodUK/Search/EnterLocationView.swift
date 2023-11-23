@@ -31,9 +31,7 @@ struct EnterLocationView: View {
                     .scaledToFit()
                     .frame(height: 80)
                     .padding()
-                    .background(.titleColor)
-                    .clipShape(.rect(cornerRadius: 15))
-                    .padding()
+                    .colorSchemeEffect
 
                 Text("Welcome")
                     .font(.largeTitle)

@@ -1,5 +1,5 @@
 //
-//  ButtonModifiler.swift
+//  ButtonModifier.swift
 //  ShareAMeal
 //
 //  Created by Nigel Gee on 19/10/2023.
