@@ -29,7 +29,7 @@ struct ChangeViewTip: Tip {
 
     var rules: [Rule] {
         #Rule(Self.changeViewEvent) { event in
-            event.donations.count >= 2
+            event.donations.count >= 3
         }
     }
 }

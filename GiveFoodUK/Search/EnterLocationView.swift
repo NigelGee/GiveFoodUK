@@ -37,7 +37,6 @@ struct EnterLocationView: View {
                     .font(.largeTitle)
 
                 Text("To get started, please tell us your postcode.")
-                    .padding([.horizontal, .bottom])
 
                 HStack {
                     TextField("Enter post code or town", text: $criteria)
@@ -45,14 +44,14 @@ struct EnterLocationView: View {
                         .textInputAutocapitalization(.characters)
                         .textContentType(.postalCode)
                         .submitLabel(.go)
-                        .onSubmit { router.path.append(criteria) }
+                        .onSubmit(getPostcode)
 
                     Button {
-                        searchType = .postcode
-                        router.path.append(criteria)
+                        getPostcode()
                     } label: {
                         Text("Go")
                             .padding(.horizontal)
+                            .foregroundColor(criteria.isEmpty ? .secondary : .white)
                     }
                     .buttonStyle(.borderedColor(with: criteria.isEmpty ? .titleColor : .blue))
                     .disabled(criteria.isEmpty)
@@ -90,11 +89,21 @@ struct EnterLocationView: View {
     /// A method that request current location of user and set properties
     func getLocation() {
         locationManager.requestLocation()
-        if let location = locationManager.location {
-            searchType = .currentLocation
-            criteria = "\(location.latitude),\(location.longitude)"
-            router.path.append(criteria)
-        }
+
+        guard let location = locationManager.location else { return }
+
+        searchType = .currentLocation
+        criteria = "\(location.latitude),\(location.longitude)"
+        router.path.append(criteria)
+
+    }
+    
+    /// A method that use `TextField` criteria for search
+    func getPostcode() {
+        guard criteria.isNotEmpty else { return }
+
+        searchType = .postcode
+        router.path.append(criteria)
     }
 }
 

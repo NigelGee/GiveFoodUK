@@ -16,8 +16,7 @@ struct GiveFoodUKApp: App {
     /// Configure TipKit
     init() {
 //        try? Tips.resetDatastore()
-//        Tips.showTipsForTesting([ChangeViewTip.self])
-        try? Tips.configure([.displayFrequency(.daily)])
+        try? Tips.configure()
 
     }
 

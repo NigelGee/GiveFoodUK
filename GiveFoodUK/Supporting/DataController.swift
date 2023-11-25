@@ -43,7 +43,6 @@ class DataController {
     /// - Returns: A state of loading state
     func loadFoodbank(for foodbankID: String) async -> LoadState {
         let fullURL = "https://www.givefood.org.uk/api/2/foodbank/\(foodbankID)"
-        print(fullURL)
 
         guard let url = URL(string: fullURL) else { return .failed }
 
