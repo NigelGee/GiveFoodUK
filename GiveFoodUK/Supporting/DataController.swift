@@ -14,6 +14,7 @@ enum LoadState {
 
 @Observable
 class DataController {
+    let locationManager = LocationManager()
 
     /// A method to load food banks on given criteria based on searchType (currentLocation/Postcode)
     /// - Parameters:
@@ -21,7 +22,20 @@ class DataController {
     ///   - criteria: Either postcode/town or current location
     /// - Returns: A state of loading state
     func loadFoodbanks(_ searchType: SearchType, for criteria: String) async -> LoadState {
-        let fullURL = searchType.rawValue + criteria
+        var fullURL = ""
+
+        switch searchType {
+        case .postcode:
+            fullURL = searchType.rawValue + criteria
+        case .currentLocation:
+            await locationManager.requestLocation()
+
+            try? await Task.sleep(for: .seconds(2))
+
+            guard let location = locationManager.location else { return .failed }
+
+            fullURL = searchType.rawValue + "\(location.latitude),\(location.longitude)"
+        }
 
         guard let url = URL(string: fullURL) else { return .failed }
 

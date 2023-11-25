@@ -18,7 +18,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         manager.delegate = self
     }
 
-    func requestLocation() {
+    func requestLocation() async {
         manager.requestLocation()
     }
 

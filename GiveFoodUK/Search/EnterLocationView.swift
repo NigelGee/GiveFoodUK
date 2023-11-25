@@ -13,8 +13,6 @@ struct EnterLocationView: View {
     @Environment(DataController.self) private var dataController
     @EnvironmentObject var router: Router
 
-    @State private var locationManager = LocationManager()
-
     /// A property that will be used in `URL` to retrieve JSON data
     @State private var criteria = ""
 
@@ -45,6 +43,9 @@ struct EnterLocationView: View {
                         .textContentType(.postalCode)
                         .submitLabel(.go)
                         .onSubmit(getPostcode)
+                        .onAppear {
+                            UITextField.appearance().clearButtonMode = .whileEditing
+                        }
 
                     Button {
                         getPostcode()
@@ -88,14 +89,9 @@ struct EnterLocationView: View {
     
     /// A method that request current location of user and set properties
     func getLocation() {
-        locationManager.requestLocation()
-
-        guard let location = locationManager.location else { return }
-
         searchType = .currentLocation
-        criteria = "\(location.latitude),\(location.longitude)"
+        criteria = ""
         router.path.append(criteria)
-
     }
     
     /// A method that use `TextField` criteria for search
